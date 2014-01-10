@@ -5,12 +5,17 @@ var crypto = require('crypto');
 var User = require('../models/user.js');
 var sessionStorage = require('../models/sessionStorage');
 var Post = require('../models/post.js');
+
+var logger = require('../log').logger;  
+
 module.exports = function(app) {
 	app.get('/', function(req, res) {
 		res.render('index', {
 			title : '首页',
 		});
-		throw new Error('An error for test purposes.');
+		//throw new Error('just for test');
+		logger.info("this is log");
+		console.log('console----log');
 	});
 
 	app.get('/reg', function(req, res) {
@@ -144,6 +149,12 @@ module.exports = function(app) {
 				});
 				console.log('ttt');
 			});
+		});
+	});
+	app.get('/resume',function(req,res){
+		res.render('resume',{
+			title:'我的简历',
+			layout:'layoutresume'
 		});
 	});
 
